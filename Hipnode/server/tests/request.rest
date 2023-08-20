@@ -1,0 +1,206 @@
+// Users
+GET http://localhost:8000/users
+###
+
+POST http://localhost:8000/users/register 
+Content-Type: application/json
+
+{
+  "username": "ben",
+  "email": "ben@gmail.com",
+  "password": "ben"
+}
+
+###
+POST http://localhost:8000/users/login 
+Content-Type: application/json
+
+{
+  "email": "ben@gmail.com",
+  "password": "ben"
+}
+
+###
+GET http://localhost:8000/users/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjg2OTI5NTk0LCJleHAiOjE2ODk1MjE1OTR9.LwtYypAFABcx7DDvjUUg_1GyOypF4VT532eNHhrNTXs
+
+###
+GET http://localhost:8000/users/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjg2OTI5NTk0LCJleHAiOjE2ODk1MjE1OTR9.LwtYypAFABcx7DDvjUUg_1GyOypF4VT532eNHhrNTXs
+
+
+
+// Group 
+GET http://localhost:8000/groups
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjg2ODQ5MDY4LCJleHAiOjE2ODk0NDEwNjh9.pxiVLP0dcAoda8ZvshabzgymbllzRwI4IzQAliUgSBo
+###
+
+GET http://localhost:8000/groups/2
+####
+
+POST http://localhost:8000/groups
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsImlhdCI6MTY5MDQ5NDgwOSwiZXhwIjoxNjkwNTgxMjA5fQ.p6DAmPemtW39tAlCT4dgDt1Om2rxyxX6VFy6XLjEgfo
+
+{
+  "name": "jsmastery",
+  "about": "jsmastery",
+  "description": "jsmastery",
+  "image_url": "https://images.unsplash.com/photo-1586348943529-beaae6c28db9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fG5hdHVyZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
+  "logo_url": "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fG5hdHVyZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60"
+}
+
+###
+POST http://localhost:8000/groups/2/join
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiaWF0IjoxNjg5ODcyMjM3LCJleHAiOjE2ODk5NTg2Mzd9.gpmBr5xPE1f0jxMNe64hf08dgFH-FlP3_v8GXDOSXJA
+
+### 
+GET http://localhost:8000/posts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjg2ODAyNjUwLCJleHAiOjE2ODkzOTQ2NTB9.cR6BTDOo9NLjUsT1Fx6pljJtVNdrD8QURkNNRE_fujE
+
+###
+GET http://localhost:8000/posts/2
+####
+
+POST http://localhost:8000/groups/13/posts
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsImlhdCI6MTY5MDQ5NDgwOSwiZXhwIjoxNjkwNTgxMjA5fQ.p6DAmPemtW39tAlCT4dgDt1Om2rxyxX6VFy6XLjEgfo
+
+{
+  "title": "ben's post 1", 
+  "content": "ben's post 1", 
+  "image_url": "https://images.unsplash.com/photo-1586348943529-beaae6c28db9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fG5hdHVyZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60", 
+  "tags": ["jsm", "btc", "crypto", "javascript", "java"]
+}
+
+###
+PATCH http://localhost:8000/posts/7
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjg2OTI5ODUzLCJleHAiOjE2ODk1MjE4NTN9.1Ji4TZBQo6xp4SM5MBoSMKv9tK5tHLIloMc9kaCA_9Y
+
+{
+  "title": "ben's post 2", 
+  "content": "ben's post 2"
+}
+
+### 
+DELETE http://localhost:8000/posts/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNjg2OTI5NzIzLCJleHAiOjE2ODk1MjE3MjN9.pKb06EHK3T1hgqtJ_2kbE_otjlyWazTniz7Rj4BYd8w
+
+// Reports
+
+###
+GET http://localhost:8000/reports
+
+###
+POST http://localhost:8000/reports
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjg2ODQ5MDY4LCJleHAiOjE2ODk0NDEwNjh9.pxiVLP0dcAoda8ZvshabzgymbllzRwI4IzQAliUgSBo
+
+{
+ "reason": "spam",
+ "username": "derek123"
+}
+
+### 
+GET http://localhost:8000/follows/3/followers
+
+### 
+GET http://localhost:8000/follows/1/following 
+
+### 
+POST http://localhost:8000/follows/1/follow 
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjg3ODIwOTY1LCJleHAiOjE2ODc5MDczNjV9.7-33YYw9y6zb8e7ra9LArJJcJCXBGX0pJJj9YXoFCVs
+
+###
+DELETE http://localhost:8000/follows/4/unfollow 
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjg3ODIwOTY1LCJleHAiOjE2ODc5MDczNjV9.7-33YYw9y6zb8e7ra9LArJJcJCXBGX0pJJj9YXoFCVs
+
+###
+GET http://localhost:8000/posts/3/comments  
+
+###
+POST http://localhost:8000/posts/5/comments 
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjg3ODgwOTQ3LCJleHAiOjE2ODc5NjczNDd9.eKUGQu5xx1mmkv-GQDNFWKW2uNWcU_zyW8BBCCdY8Lo
+
+{
+  "content": "you're wonderful"
+}
+
+// Comments
+
+###
+GET http://localhost:8000/comments/1
+
+###
+POST http://localhost:8000/comments/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjg2ODQ5MDY4LCJleHAiOjE2ODk0NDEwNjh9.pxiVLP0dcAoda8ZvshabzgymbllzRwI4IzQAliUgSBo
+
+{
+  "content": "ben's comment 1"
+}
+
+###
+GET http://localhost:8000/likes
+
+###
+POST http://localhost:8000/likes
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjg2ODQ5MDY4LCJleHAiOjE2ODk0NDEwNjh9.pxiVLP0dcAoda8ZvshabzgymbllzRwI4IzQAliUgSBo
+  
+  {
+    "postId": 3,
+    "userId": 2
+  }
+
+###
+GET http://localhost:8000/notifications
+
+###
+POST http://localhost:8000/podcasts 
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsImlhdCI6MTY5MDQ5NDgwOSwiZXhwIjoxNjkwNTgxMjA5fQ.p6DAmPemtW39tAlCT4dgDt1Om2rxyxX6VFy6XLjEgfo
+
+{
+  "title": "experiencing jsm", 
+  "content": "what it feels like and how much you learn", 
+  "artist": "Benji Fam", 
+  "image_url": "https://images.unsplash.com/photo-1586348943529-beaae6c28db9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fG5hdHVyZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60", 
+  "audio_url": "https://musopen.org/music/3998-cello-suite-no-1-in-g-major-bwv-1007/#recordings", 
+  "episode_number": 99
+}
+
+### 
+POST http://localhost:8000/meetups 
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsImlhdCI6MTY5MDQ5NDgwOSwiZXhwIjoxNjkwNTgxMjA5fQ.p6DAmPemtW39tAlCT4dgDt1Om2rxyxX6VFy6XLjEgfo
+
+{
+  "name": "jsm meetup", 
+  "content": "jsm meetup",
+  "location": "San Francisco, CA",
+  "date": "2023-12-27T14:30:00.000Z"  
+}
+
+###
+GET http://localhost:8000/groups/13/isMember?user_id=13
+
+###
+GET http://localhost:8000/groups/13/admin
+
+###
+GET http://localhost:8000/groups/2/members
+
+### 
+GET http://localhost:8000/tags/popular
+
+### 
+// Get all created groups from a user 
+GET http://localhost:8000/users/7/groups 
