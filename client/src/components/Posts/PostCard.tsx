@@ -1,15 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
 import React from 'react';
 import Loading from '../Loading/Loading';
 import Error from '../Error/Error';
-
-const apiUrl = import.meta.env.VITE_DEV_BACKEND_URL;
-
-const getUserInfo = async (id) => {
-  const res = await axios.get(`${apiUrl}/users/${id}/profile`);
-  return await res.data;
-};
+import { getUserInfo } from '../../services/apiService/userAPI';
 
 export default function PostCard({ post }) {
   const { id, title, content, image_url, user_id } = post;

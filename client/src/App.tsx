@@ -1,12 +1,15 @@
 import React from 'react';
-import HomePage from './pages/HomePage';
 import Header from './components/Header/Header';
+import Routes from './routes/Routes';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 export default function App() {
   return (
-    <div>
-      <Header />
-      <HomePage />
-    </div>
+    <>
+      <Router>
+        <Header />
+        <Routes />
+      </Router>
+    </>
   );
 }
