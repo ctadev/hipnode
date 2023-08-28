@@ -4,8 +4,8 @@ import { useMutation } from '@tanstack/react-query';
 import { loginUser } from '../services/apiService/userApi';
 import { useNavigate } from 'react-router';
 import { setUserToLocalStorage } from '../services/authService/userAuth';
-import { useDispatch, useSelector } from 'react-redux';
-import { IUserState, loggedinUser } from '../app/userSlice';
+import { useDispatch } from 'react-redux';
+import { loggedinUser } from '../app/userSlice';
 
 interface SigninPageState {
   email: string;
