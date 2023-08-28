@@ -129,3 +129,9 @@ export interface INotification {
   isRead?: boolean;
   fromUserId?: string;
 }
+
+export interface ICurrentUser {
+  id: number;
+  username: string;
+  token: string;
+}

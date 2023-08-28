@@ -1,19 +1,26 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { ICurrentUser } from '../../types/index';
 
-const initialState: { isLoggedIn: boolean } = {
-  isLoggedIn: localStorage.getItem('user') ? true : false,
+interface IState {
+  currentUser: null | ICurrentUser;
+}
+
+const initialState: IState = {
+  currentUser: null,
 };
 
 export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    loggedinUser: (state) => ({ ...state, isLoggedIn: true }),
-    logoutUser: (state) => ({ ...state, isLoggedIn: false }),
+    loggedinUser: (state, action) => ({
+      ...state,
+      currentUser: action.payload,
+    }),
+    logoutUser: (state) => ({ ...state, currentUser: null }),
   },
 });
 
-// Action creators are generated for each case reducer function
 export const { loggedinUser, logoutUser } = userSlice.actions;
 
 export default userSlice.reducer;

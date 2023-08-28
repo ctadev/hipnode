@@ -1,22 +1,20 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
 import Form from '../components/Form/Form';
+import { useMutation } from '@tanstack/react-query';
 
-interface SignupPageState {
-  username: string;
+interface SigninPageState {
   email: string;
   password: string;
 }
 
-export default function SignupPage() {
-  const [user, setUser] = useState<SignupPageState>({
-    username: '',
+export default function SigninPage() {
+  const [user, setUser] = useState<SigninPageState>({
     email: '',
     password: '',
   });
 
   const clearFormInputs = () => {
     setUser({
-      username: '',
       email: '',
       password: '',
     });
@@ -35,16 +33,6 @@ export default function SignupPage() {
   return (
     <Form>
       <form onSubmit={handleFormSubmit}>
-        <div>
-          <label htmlFor="username">Username: </label>
-          <input
-            type="text"
-            id="username"
-            name="username"
-            value={user.username}
-            onChange={handleInputChange}
-          />
-        </div>
         <div>
           <label htmlFor="email">Email: </label>
           <input

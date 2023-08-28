@@ -4,21 +4,20 @@ import HomePage from '../views/HomePage';
 import MeetupPage from '../views/MeetupsPage';
 import GroupPage from '../views/GroupPage';
 import PodcastPage from '../views/PodcastsPage';
+import SigninPage from '../views/SigninPage';
+import SignupPage from '../views/SignupPage';
 
 export default function Routes() {
   return (
     <>
       <Switch>
         <Route path="/" element={<HomePage />} />
-      </Switch>
-      <Switch>
         <Route path="/meetups" element={<MeetupPage />} />
-      </Switch>
-      <Switch>
         <Route path="/groups" element={<GroupPage />} />
-      </Switch>
-      <Switch>
         <Route path="/podcasts" element={<PodcastPage />} />
+        <Route path="/podcasts" element={<PodcastPage />} />
+        <Route path="/sign-in" element={<SigninPage />} />
+        <Route path="/sign-up" element={<SignupPage />} />
       </Switch>
     </>
   );
