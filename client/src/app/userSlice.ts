@@ -1,12 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { ICurrentUser } from '../../types/index';
+import { getUserFromLocalStorage } from '../services/authService/userAuth';
 
-interface IState {
+export interface IUserState {
   currentUser: null | ICurrentUser;
 }
 
-const initialState: IState = {
-  currentUser: null,
+const initialState: IUserState = {
+  currentUser: getUserFromLocalStorage() ? getUserFromLocalStorage() : null,
 };
 
 export const userSlice = createSlice({

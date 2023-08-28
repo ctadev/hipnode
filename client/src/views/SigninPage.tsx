@@ -1,6 +1,11 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
 import Form from '../components/Form/Form';
 import { useMutation } from '@tanstack/react-query';
+import { loginUser } from '../services/apiService/userApi';
+import { useNavigate } from 'react-router';
+import { setUserToLocalStorage } from '../services/authService/userAuth';
+import { useDispatch } from 'react-redux';
+import { loggedinUser } from '../app/userSlice';
 
 interface SigninPageState {
   email: string;
@@ -12,6 +17,10 @@ export default function SigninPage() {
     email: '',
     password: '',
   });
+  const [error, setError] = useState<string>('');
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const clearFormInputs = () => {
     setUser({
@@ -20,14 +29,28 @@ export default function SigninPage() {
     });
   };
 
+  const mutation = useMutation({
+    mutationFn: () => loginUser(user),
+    onSuccess: (data) => {
+      dispatch(loggedinUser(data));
+      setUserToLocalStorage(data);
+      clearFormInputs();
+      navigate('/');
+    },
+    onError: (err: any) => {
+      setError(err.message);
+    },
+  });
+
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setUser((prev) => ({ ...prev, [name]: value }));
+    setError('');
   };
 
-  const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    clearFormInputs();
+    mutation.mutate();
   };
 
   return (
@@ -53,6 +76,7 @@ export default function SigninPage() {
             onChange={handleInputChange}
           />
         </div>
+        <p>{error}</p>
         <button>Login</button>
       </form>
     </Form>
