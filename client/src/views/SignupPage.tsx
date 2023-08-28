@@ -1,5 +1,8 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
 import Form from '../components/Form/Form';
+import { useMutation } from '@tanstack/react-query';
+import { registerUser } from '../services/apiService/userApi';
+import { useNavigate } from 'react-router';
 
 interface SignupPageState {
   username: string;
@@ -13,6 +16,9 @@ export default function SignupPage() {
     email: '',
     password: '',
   });
+  const [error, setError] = useState<string>('');
+
+  const navigate = useNavigate();
 
   const clearFormInputs = () => {
     setUser({
@@ -22,14 +28,26 @@ export default function SignupPage() {
     });
   };
 
+  const mutation = useMutation({
+    mutationFn: () => registerUser(user),
+    onSuccess: () => {
+      clearFormInputs();
+      navigate('/sign-in');
+    },
+    onError(err: any) {
+      setError(err.message);
+    },
+  });
+
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setUser((prev) => ({ ...prev, [name]: value }));
+    setError('');
   };
 
   const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    clearFormInputs();
+    mutation.mutate();
   };
 
   return (
@@ -65,6 +83,7 @@ export default function SignupPage() {
             onChange={handleInputChange}
           />
         </div>
+        <p>{error}</p>
         <button>Login</button>
       </form>
     </Form>
