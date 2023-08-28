@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { ICurrentUser } from '../../types/index';
 
-interface IState {
+export interface IUserState {
   currentUser: null | ICurrentUser;
 }
 
-const initialState: IState = {
+const initialState: IUserState = {
   currentUser: null,
 };
 
