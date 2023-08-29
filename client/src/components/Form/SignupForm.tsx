@@ -26,7 +26,7 @@ export default function SignupForm({
         label="username"
       />
       <Input
-        type="text"
+        type="email"
         id="email"
         name="email"
         value={user.email}
@@ -34,7 +34,7 @@ export default function SignupForm({
         label="email"
       />
       <Input
-        type="text"
+        type="password"
         id="password"
         name="password"
         value={user.password}

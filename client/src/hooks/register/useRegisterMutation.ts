@@ -6,7 +6,7 @@ import { IRegisterUser } from '../../views/SignupPage';
 
 export const useRegisterMutation = (
   user: IRegisterUser,
-  resetForm: () => void, 
+  resetForm: () => void,
   setError: Dispatch<React.SetStateAction<string>>,
 ) => {
   const navigate = useNavigate();
@@ -14,7 +14,7 @@ export const useRegisterMutation = (
   return useMutation({
     mutationFn: async () => await registerUser(user),
     onSuccess: () => {
-      navigate('/sing-in');
+      navigate('/sign-in');
       resetForm();
     },
     onError: (err: any) => setError(err.message),
