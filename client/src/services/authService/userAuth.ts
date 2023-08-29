@@ -39,15 +39,8 @@ export const removeUserFromLocalStorage = (): void => {
   localStorage.removeItem(LOCAL_STORAGE_KEY);
 };
 
-export const getToken = (): string | undefined => {
-  if (!getUserFromLocalStorage()) {
-    return undefined;
-  }
-  return getUserFromLocalStorage()?.token;
-};
-
-export const removeToken = (): void => {
-  if (getUserFromLocalStorage()) {
-    removeUserFromLocalStorage();
-  }
+export const authHeaders = {
+  Authorization: `Bearer ${
+    getUserFromLocalStorage() && getUserFromLocalStorage()?.token
+  }`,
 };
