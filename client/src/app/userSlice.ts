@@ -1,19 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { ICurrentUser } from '../../types/index';
+import { getUserFromLocalStorage } from '../services/authService/userAuth';
 
-interface IState {
+export interface IUserState {
   currentUser: null | ICurrentUser;
 }
 
-const initialState: IState = {
-  currentUser: null,
+const initialState: IUserState = {
+  currentUser: getUserFromLocalStorage() ? getUserFromLocalStorage() : null,
 };
 
 export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    loggedinUser: (state, action) => ({
+    signinUser: (state, action) => ({
       ...state,
       currentUser: action.payload,
     }),
@@ -21,6 +22,6 @@ export const userSlice = createSlice({
   },
 });
 
-export const { loggedinUser, logoutUser } = userSlice.actions;
+export const { signinUser, logoutUser } = userSlice.actions;
 
 export default userSlice.reducer;
