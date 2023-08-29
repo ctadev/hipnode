@@ -1,8 +1,21 @@
 import React, { useState } from 'react';
 import HeaderIcon from '../Icons/HeaderIcon';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { logoutUser } from '../../app/userSlice';
+import { removeUserFromLocalStorage } from '../../services/authService/userAuth';
 
 const ProfileMenu = () => {
   const [toggleTheme, setToggleTheme] = useState(true);
+  const { currentUser } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    dispatch(logoutUser());
+    removeUserFromLocalStorage();
+    navigate('/');
+  };
 
   return (
     <main className="absolute w-[182px] bg-white dark:bg-dark-main-bg dark:text-white left-0 rounded-lg top-[70px] pt-4">
