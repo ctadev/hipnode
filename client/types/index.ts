@@ -1,3 +1,7 @@
+import { boolean } from 'zod';
+
+import { boolean } from 'zod';
+
 export interface IUser {
   id?: number;
   username: string;
@@ -13,30 +17,32 @@ export interface IUser {
   instagram_url?: string | null;
   current_stage?: string | null;
   coding_ability?: string | null;
+  state?: string | null;
+  country?: string | null;
   joined_date?: Date;
 }
 
 export interface IGroup {
   id?: number;
   name: string;
-  about: string | null;
-  description: string | null;
-  content: string;
+  about: string;
+  description: string;
+  image_url: string;
+  logo_url: string;
   user_id: number;
-  created_at?: Date | null;
+  view_count?: number;
+  member_count?: number;
+  created_at?: Date;
   updated_at?: Date | null;
-  image_url?: string | null;
-  view_count: number;
-  member_count: number;
 }
 
 export interface IPost {
   id?: number;
   title: string;
   content: string;
-  image_url?: string | null;
-  user_id: number;
+  image_url: string;
   group_id: number;
+  user_id: number;
   view_count?: number | null;
   like_count?: number | null;
   created_at?: Date;
@@ -47,11 +53,10 @@ export interface IMeetup {
   id?: number;
   name: string;
   content: string;
-  user_id: number;
-  city?: string | null;
-  state?: string | null;
-  country?: string | null;
+  image_url: string;
+  location: string;
   date: Date;
+  user_id: number;
   is_fulltime?: boolean;
   is_parttime?: boolean;
   is_internship?: boolean;
@@ -74,15 +79,37 @@ export interface IPodcast {
   title: string;
   content: string;
   artist: string;
+  image_url: string;
+  audio_url: string;
+  episode_number: number;
   user_id: number;
-  state?: string | null;
-  country?: string | null;
   is_indie_bites?: boolean;
   is_software_social?: boolean;
   is_hipnode?: boolean;
   is_free?: boolean;
   created_at?: Date;
   updated_at?: Date | null;
+}
+
+export interface ITag {
+  id?: number;
+  name: string;
+}
+
+export interface IPostTag {
+  id?: number;
+  post_id: number;
+  tag_id: number;
+}
+
+export interface IComment {
+  id: number;
+  content?: string | undefined;
+  user_id: number;
+  post_id: number;
+  reply_id: number;
+  created_at: Date;
+  updated_at: Date;
 }
 
 export interface IPostReport {
@@ -97,41 +124,8 @@ export interface IReport {
   username: string;
 }
 
-export interface IPostLike {
+export interface IFollow {
   id?: number;
-  post_id: number;
-  user_id: number;
-}
-
-export interface ICommentLike {
-  id?: number;
-  comment_id: number;
-  user_id: number;
-}
-
-export interface IComment {
-  id?: number;
-  content: string;
-  created_at?: Date;
-  updated_at?: Date | null;
-  user_id: number;
-  post_id: number;
-  reply_id?: number | null;
-}
-
-export interface INotification {
-  id?: string;
-  userId: string;
-  type: string;
-  postId?: string;
-  commentId?: string;
-  time: Date;
-  isRead?: boolean;
-  fromUserId?: string;
-}
-
-export interface ICurrentUser {
-  id: number;
-  username: string;
-  token: string;
+  follower_id: number;
+  following_id: number;
 }

@@ -1,21 +1,30 @@
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
-import React, { useState } from 'react';
+import React from 'react';
+import Loading from '../Loading/Loading';
+import Error from '../Error/Error';
+import PodcastCard from './PodcastCard';
+import { getAllPodcasts } from '../../services/apiService/podcastApi';
+import { IPodcast } from '../../../types/index';
 
 export default function PodcastList() {
   const { data, error, isLoading, isError } = useQuery({
-    queryFn: async () => {
-      try {
-        const res = await axios.get('http:localhost:/8000/podcasts');
-        return res.data; 
-      }
-      catch (err:any) {
-        if ('response' in err && typeof err === "object") {
-          throw new Error(err.response?.data?.message)
-        }
-      }
-      
-    },
+    queryKey: ['podcasts'],
+    queryFn: getAllPodcasts,
   });
-  return <div>PodcastList</div>;
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  if (error && isError) {
+    return <Error error={error} />;
+  }
+  return (
+    <section>
+      {data.length > 0 &&
+        data.map((podcast: IPodcast) => (
+          <PodcastCard key={podcast.id} podcast={podcast} />
+        ))}
+    </section>
+  );
 }

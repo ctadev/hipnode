@@ -6,12 +6,7 @@ interface ILoginUser {
   password: string;
 }
 
-const apiUrl = import.meta.env.VITE_DEV_BACKEND_URL;
-
-export const getUserInfo = async (id: number) => {
-  const res = await axios.get(`${apiUrl}/users/${id}/profile`);
-  return await res.data;
-};
+const API_URL = import.meta.env.VITE_DEV_BACKEND_URL;
 
 const handleError = (err: any) => {
   if (err && 'response' in err && typeof err.response === 'object') {
@@ -19,9 +14,18 @@ const handleError = (err: any) => {
   }
 };
 
+export const getUserInfo = async (id: number) => {
+  try {
+    const res = await axios.get(`${API_URL}/users/${id}/profile`);
+    return await res.data;
+  } catch (err: any) {
+    handleError(err);
+  }
+};
+
 export const loginUser = async (user: ILoginUser) => {
   try {
-    const res = await axios.post(`${apiUrl}/users/login`, user);
+    const res = await axios.post(`${API_URL}/users/login`, user);
     return res.data;
   } catch (err: any) {
     handleError(err);
@@ -30,7 +34,7 @@ export const loginUser = async (user: ILoginUser) => {
 
 export const registerUser = async (user: ILoginUser) => {
   try {
-    const res = await axios.post(`${apiUrl}/users/register`, user);
+    const res = await axios.post(`${API_URL}/users/register`, user);
     return res.data;
   } catch (err: any) {
     handleError(err);

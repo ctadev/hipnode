@@ -2,7 +2,7 @@ import React from 'react';
 import { Routes as Switch, Route } from 'react-router-dom';
 import HomePage from '../views/HomePage';
 import MeetupPage from '../views/MeetupsPage';
-import GroupPage from '../views/GroupPage';
+import GroupPage from '../views/GroupsPage';
 import PodcastPage from '../views/PodcastsPage';
 import SigninPage from '../views/SigninPage';
 import SignupPage from '../views/SignupPage';
