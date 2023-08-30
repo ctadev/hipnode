@@ -11,11 +11,11 @@ export default function GroupCard({ group }: GroupCardProps) {
   return (
     <article>
       <div>
-        <img src={logo_url} alt={name} height={50} width={50} />
+        <img src={logo_url} alt={name} height={25} width={25} />
         <h3>{name}</h3>
       </div>
       <div>
-        <img src={image_url} alt={name} height={250} width={300} />
+        <img src={image_url} alt={name} height={100} width={100} />
       </div>
       <p>{description}</p>
       <span>{formattedDate(created_at)}</span>
