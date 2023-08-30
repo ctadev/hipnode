@@ -5,7 +5,7 @@ import Loading from '../Loading/Loading';
 import Error from '../Error/Error';
 
 interface UserHeaderProps {
-  user_id: string;
+  user_id: number;
 }
 
 export default function UserHeader({ user_id }: UserHeaderProps) {
