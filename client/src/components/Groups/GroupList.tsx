@@ -1,26 +1,33 @@
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
 import React from 'react';
 import GroupCard from './GroupCard';
+import { getAllGroups } from '../../services/apiService/groupApi';
+import Loading from '../Loading/Loading';
+import Error from '../Error/Error';
+import { IGroup } from '../../../types/index';
 
 export default function GroupList() {
-  const { data, error, isLoading, isError } = useQuery({
+  const {
+    data: groups,
+    error,
+    isLoading,
+    isError,
+  } = useQuery({
     queryKey: ['groups'],
-    queryFn: async () => {
-      try {
-        const res = await axios.get('http://localhost:8000/groups');
-        return res.data;
-      } catch (err: any) {
-        if (err && typeof err === 'object' && 'response' in err) {
-          throw new Error(err.response?.data.message);
-        }
-      }
-    },
+    queryFn: getAllGroups,
   });
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  if (error && isError) {
+    return <Error error={error} />;
+  }
 
   return (
     <section>
-      {data.map((group) => (
+      {groups?.map((group: IGroup) => (
         <GroupCard key={group.id} group={group} />
       ))}
     </section>
