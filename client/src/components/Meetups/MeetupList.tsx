@@ -1,5 +1,4 @@
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
 import React from 'react';
 import Loading from '../Loading/Loading';
 import Error from '../Error/Error';
@@ -29,7 +28,7 @@ export default function MeetupList() {
   return (
     <section>
       {meetups.map((meetup: IMeetup) => (
-        <MeetupCard meetup={meetup} />
+        <MeetupCard key={meetup.id} meetup={meetup} />
       ))}
     </section>
   );
