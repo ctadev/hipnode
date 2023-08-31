@@ -4,14 +4,14 @@ import { ILoginUser } from '../../views/SigninPage';
 
 interface SigninFormProps {
   user: ILoginUser;
-  error: string;
+  errorMessage: string;
   handleInputChange: (e: ChangeEvent<HTMLInputElement>) => void;
   handleFormSubmit: (e: FormEvent<HTMLFormElement>) => void;
 }
 
 export default function SigninForm({
   user,
-  error,
+  errorMessage,
   handleInputChange,
   handleFormSubmit,
 }: SigninFormProps) {
@@ -34,7 +34,7 @@ export default function SigninForm({
         label="password"
       />
 
-      {error && <p>{error}</p>}
+      {errorMessage && <p>{errorMessage}</p>}
 
       <button type="submit">Sign In</button>
     </form>

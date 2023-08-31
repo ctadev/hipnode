@@ -1,7 +1,5 @@
 import { boolean } from 'zod';
 
-import { boolean } from 'zod';
-
 export interface IUser {
   id?: number;
   username: string;

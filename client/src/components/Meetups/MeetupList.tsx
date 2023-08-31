@@ -1,20 +1,20 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
-import GroupCard from './GroupCard';
-import { getAllGroups } from '../../services/apiService/groupApi';
 import Loading from '../Loading/Loading';
 import Error from '../Error/Error';
-import { IGroup } from '../../../types/index';
+import { IMeetup } from '../../../types/index';
+import { getAllMeetups } from '../../services/apiService/meetupApi';
+import MeetupCard from './MeetupCard';
 
-export default function GroupList() {
+export default function MeetupList() {
   const {
-    data: groups,
+    data: meetups,
     error,
     isLoading,
     isError,
   } = useQuery({
-    queryKey: ['groups'],
-    queryFn: getAllGroups,
+    queryKey: ['meetups'],
+    queryFn: getAllMeetups,
   });
 
   if (isLoading) {
@@ -27,8 +27,8 @@ export default function GroupList() {
 
   return (
     <section>
-      {groups?.map((group: IGroup) => (
-        <GroupCard key={group.id} group={group} />
+      {meetups.map((meetup: IMeetup) => (
+        <MeetupCard key={meetup.id} meetup={meetup} />
       ))}
     </section>
   );

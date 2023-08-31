@@ -1,18 +1,26 @@
-import axios from 'axios';
+import axios, { AxiosError, AxiosResponse } from 'axios';
+import { IPodcast } from '../../../types/index';
 
-const API_URL = import.meta.env.VITE_DEV_BACKEND_URL;
+const API_URL: string = import.meta.env.VITE_DEV_BACKEND_URL as string;
 
-const handleError = (err: any) => {
-  if (err && typeof err === 'object' && 'response' in err) {
-    throw new Error(err.response?.data?.message);
+interface ErrorResponse {
+  message: string;
+}
+
+const handleError = (err: AxiosError<ErrorResponse>): void => {
+  if (err && err.response) {
+    throw new Error(err.response.data.message);
   }
+  throw new Error('An error occured');
 };
 
-export const getAllPodcasts = async () => {
+export const getAllPodcasts = async (): Promise<IPodcast[] | undefined> => {
   try {
-    const res = await axios.get(`${API_URL}/podcasts`);
-    return res.data;
-  } catch (err: any) {
-    handleError(err);
+    const res: AxiosResponse<IPodcast[]> = await axios.get(
+      `${API_URL}/podcasts`,
+    );
+    return res.data as IPodcast[];
+  } catch (err) {
+    handleError(err as AxiosError<ErrorResponse>);
   }
 };
