@@ -35,7 +35,11 @@ const UserMenu = () => {
           placeholder="Type here to search..."
         />
         <div className="absolute top-1/2 -translate-y-1/2 right-5 cursor-pointer z-20">
-          <HeaderIcon iconName="search" color="#C5D0E6" className='search_icon' />
+          <HeaderIcon
+            iconName="search"
+            color="#C5D0E6"
+            className="search_icon"
+          />
         </div>
       </section>
 
@@ -43,7 +47,7 @@ const UserMenu = () => {
       <section className="relative">
         <ul className="flex items-center gap-2 md:gap-6">
           <li
-            className="cursor-pointer bg-main-bg dark:bg-dark-secondary-bg p-2 rounded-lg hover:bg-primary-orange header_li"
+            className="cursor-pointer bg-main-bg dark:bg-dark-secondary-bg p-2 rounded-lg dark:hover:bg-primary-orange hover:bg-primary-orange header_li"
             onClick={toggleMessageModal}
           >
             <HeaderIcon
@@ -53,7 +57,7 @@ const UserMenu = () => {
             />
           </li>
           <li
-            className="cursor-pointer bg-main-bg dark:bg-dark-secondary-bg p-2 rounded-lg hover:bg-primary-orange header_li"
+            className="cursor-pointer bg-main-bg dark:bg-dark-secondary-bg p-2 rounded-lg dark:hover:bg-primary-orange hover:bg-primary-orange header_li"
             onClick={toggleNotificationModal}
           >
             <HeaderIcon

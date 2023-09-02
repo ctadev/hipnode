@@ -9,7 +9,7 @@ const BottomNavLink = ({ label, path }) => {
       <li
         className={
           location.pathname === path
-            ? 'bg-primary-orange p-3 rounded-md relative group header_li'
+            ? 'bg-primary-orange p-3 rounded-md relative group header_li active'
             : 'hover:bg-primary-orange p-3 rounded-md relative group transition-all header_li'
         }
       >

@@ -8,6 +8,10 @@
   font-family: 'Source Sans Pro', sans-serif;
 }
 
+.active > .header_icon {
+  fill: white;
+}
+
 .header_li:hover > .header_icon {
   fill: white;
 }

@@ -2,6 +2,8 @@ import React, { FormEvent, useState } from 'react';
 import { useLoginMutation } from '../hooks/login/useLoginMutation';
 import { useLoginForm } from '../hooks/login/useLoginForm';
 import SigninForm from '../components/Form/SigninForm';
+import LoginForm from '../components/SignIn/LoginForm';
+import SignInGuide from '../components/SignIn/SignInGuide';
 
 export interface ILoginUser {
   email: string;
@@ -25,11 +27,19 @@ export default function SigninPage() {
   };
 
   return (
-    <SigninForm
-      user={user}
-      errorMessage={errorMessage}
-      handleInputChange={handleInputChange}
-      handleFormSubmit={handleFormSubmit}
-    />
+    // <SigninForm
+    //   user={user}
+    //   error={error}
+    //   handleInputChange={handleInputChange}
+    //   handleFormSubmit={handleFormSubmit}
+    // />
+
+    <main className="flex flex-col lg:flex-row">
+      {/* Right Side */}
+      <SignInGuide />
+
+      {/* Left Side */}
+      <LoginForm />
+    </main>
   );
 }
