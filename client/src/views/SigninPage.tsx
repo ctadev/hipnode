@@ -12,12 +12,13 @@ export interface ILoginUser {
 
 export default function SigninPage() {
   const initialState: ILoginUser = { email: '', password: '' };
-  const [error, setError] = useState<string>('');
+  const [errorMessage, setErrorMessage] = useState<string>('');
 
   const { user, handleInputChange, resetForm } = useLoginForm(initialState);
 
   const loginMutation = useLoginMutation(user, resetForm, (err: any) => {
-    setError(err.message);
+    console.log('errorObj', err);
+    setErrorMessage(err.message);
   });
 
   const handleFormSubmit = (e: FormEvent<HTMLFormElement>): void => {

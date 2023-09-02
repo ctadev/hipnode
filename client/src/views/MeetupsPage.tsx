@@ -1,5 +1,10 @@
 import React from 'react';
+import MeetupList from '../components/Meetups/MeetupList';
 
 export default function MeetupsPage() {
-  return <main>MeetupsPage</main>;
+  return (
+    <main>
+      <MeetupList />
+    </main>
+  );
 }
