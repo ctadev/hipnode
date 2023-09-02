@@ -2,3 +2,8 @@ export { default as white_logo } from './w_logo.svg';
 export { default as dark_logo } from './d_logo.svg';
 export { default as white_hipnode } from './w-hipnode.svg';
 export { default as dark_hipnode } from './d-hipnode.svg';
+export { default as business } from './Business.svg';
+export { default as feedback } from './Feedback.svg';
+export { default as inbox } from './Inbox.svg';
+export { default as rocket } from './rocket.svg';
+export { default as lightning } from './Lightning.svg';
