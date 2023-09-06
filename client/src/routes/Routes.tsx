@@ -53,6 +53,14 @@ export default function Routes() {
           </ProtectedPage>
         }
       />
+      <Route
+        path="/:user_id/profile"
+        element={
+          <ProtectedPage user={true}>
+            <ProfilePage />
+          </ProtectedPage>
+        }
+      />
       <Route path="/sign-in" element={<SignInPage />} />
       <Route path="/sign-up/set-username" element={<UserName />} />
       <Route path="/sign-up/register-email" element={<Register />} />
