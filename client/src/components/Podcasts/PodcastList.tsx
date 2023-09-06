@@ -9,6 +9,7 @@ import { IPodcast } from '../../../types/index';
 type PodcastListProps = {
   selectedPodcastTypes: string[];
 };
+
 export default function PodcastList({
   selectedPodcastTypes,
 }: PodcastListProps) {
@@ -30,14 +31,13 @@ export default function PodcastList({
     return <Error error={error} />;
   }
 
-  const filteredPodcasts =
-    selectedPodcastTypes.length === 0
-      ? podcasts
-      : podcasts.filter((podcast) =>
-          selectedPodcastTypes.every(
-            (selectedPodcastType) => podcast[selectedPodcastType],
-          ),
-        );
+  const filteredPodcasts: IPodcast[] = !selectedPodcastTypes
+    ? podcasts
+    : podcasts?.filter((podcast) =>
+        selectedPodcastTypes?.every(
+          (selectedPodcastType) => podcast[selectedPodcastType],
+        ),
+      );
 
   return (
     <section>

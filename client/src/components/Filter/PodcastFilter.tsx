@@ -25,11 +25,9 @@ export default function PodcastFilter({
 }: PodcastFilterProps) {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value, checked } = e.target;
-    if (checked && !selectedPodcastTypes.includes(value)) {
-      setSelectedPodcastTypes((prev) => [...prev, value]);
-    } else if (!checked && selectedPodcastTypes.includes(value)) {
-      setSelectedPodcastTypes((prev) => prev.filter((type) => type !== value));
-    }
+    setSelectedPodcastTypes((prev) =>
+      checked ? [...prev, value] : prev.filter((type) => type !== value),
+    );
   };
 
   return (
@@ -43,6 +41,7 @@ export default function PodcastFilter({
               type="checkbox"
               id={podcastType}
               value={podcastType}
+              checked={selectedPodcastTypes.includes(podcastType)}
               onChange={handleChange}
             />
           </div>

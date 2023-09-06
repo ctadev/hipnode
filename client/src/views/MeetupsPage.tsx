@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import MeetupList from '../components/Meetups/MeetupList';
+import MeetupFilter from '../components/Filter/MeetupFilter';
 
 export default function MeetupsPage() {
+  const [meetupCategoryTypes, setMeetupCategoryTypes] = useState<string[]>([]);
+
   return (
-    <main>
-      <MeetupList />
+    <main className="flex justify-between">
+      <MeetupFilter
+        meetupCategoryTypes={meetupCategoryTypes}
+        setMeetupCategoryTypes={setMeetupCategoryTypes}
+      />
+      <MeetupList meetupCategoryTypes={meetupCategoryTypes} />
     </main>
   );
 }

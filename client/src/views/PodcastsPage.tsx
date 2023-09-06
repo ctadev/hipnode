@@ -8,7 +8,7 @@ export default function PodcastsPage() {
   );
 
   return (
-    <main className="flex justify-evenly">
+    <main className="flex justify-between">
       <PodcastFilter
         selectedPodcastTypes={selectedPodcastTypes}
         setSelectedPodcastTypes={setSelectedPodcastTypes}
