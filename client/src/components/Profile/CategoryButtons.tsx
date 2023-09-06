@@ -24,7 +24,7 @@ export default function CategoryButtons({ setCategory }: CategoryButtonsProps) {
           key={categoryButton}
           onClick={() => setCategory(categoryButton)}
         >
-          {categoryButton}
+          {categoryButton.charAt(0).toUpperCase() + categoryButton.slice(1)}
         </button>
       ))}
     </section>
