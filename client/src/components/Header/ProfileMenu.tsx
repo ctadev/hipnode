@@ -23,7 +23,12 @@ const ProfileMenu = () => {
       {/* Profile Button */}
       <section className="flex gap-3 items-center mx-4 px-4 py-1 cursor-pointer hover:bg-primary-orange rounded-full">
         <HeaderIcon iconName="profile" color={theme ? 'white' : 'black'} />
-        <h1 className="font-semibold text-lg">Profile</h1>
+        <h1
+          className="font-semibold text-lg"
+          onClick={() => navigate(`/${currentUser.id}/profile`)}
+        >
+          Profile
+        </h1>
       </section>
 
       {/* Logout Button */}

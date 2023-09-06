@@ -6,8 +6,18 @@ import PodcastCard from './PodcastCard';
 import { getAllPodcasts } from '../../services/apiService/podcastApi';
 import { IPodcast } from '../../../types/index';
 
-export default function PodcastList() {
-  const { data, error, isLoading, isError } = useQuery({
+type PodcastListProps = {
+  selectedPodcastTypes: string[];
+};
+export default function PodcastList({
+  selectedPodcastTypes,
+}: PodcastListProps) {
+  const {
+    data: podcasts,
+    error,
+    isLoading,
+    isError,
+  } = useQuery({
     queryKey: ['podcasts'],
     queryFn: getAllPodcasts,
   });
@@ -19,12 +29,21 @@ export default function PodcastList() {
   if (error && isError) {
     return <Error error={error} />;
   }
+
+  const filteredPodcasts =
+    selectedPodcastTypes.length === 0
+      ? podcasts
+      : podcasts.filter((podcast) =>
+          selectedPodcastTypes.every(
+            (selectedPodcastType) => podcast[selectedPodcastType],
+          ),
+        );
+
   return (
     <section>
-      {data.length > 0 &&
-        data.map((podcast: IPodcast) => (
-          <PodcastCard key={podcast.id} podcast={podcast} />
-        ))}
+      {filteredPodcasts.map((podcast) => (
+        <PodcastCard key={podcast.id} podcast={podcast} />
+      ))}
     </section>
   );
 }
