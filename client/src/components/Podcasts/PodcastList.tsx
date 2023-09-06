@@ -33,7 +33,11 @@ export default function PodcastList({
   const filteredPodcasts =
     selectedPodcastTypes.length === 0
       ? podcasts
-      : podcasts.filter((podcast) => console.log(Object.keys(podcast)));
+      : podcasts.filter((podcast) =>
+          selectedPodcastTypes.every(
+            (selectedPodcastType) => podcast[selectedPodcastType],
+          ),
+        );
 
   return (
     <section>

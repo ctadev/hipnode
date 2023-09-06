@@ -6,11 +6,18 @@ type PodcastFilterProps = {
 };
 
 const podcastTypes: string[] = [
-  'indie-bites',
-  'software-social',
-  'hipnode',
-  'free',
+  'is_indie_bites',
+  'is_software_social',
+  'is_hipnode',
+  'is_free',
 ];
+
+const podcastTypeName = {
+  is_indie_bites: 'Indie Bites',
+  is_software_social: 'Software Social',
+  is_hipnode: 'Hipnode',
+  is_free: 'Free',
+};
 
 export default function PodcastFilter({
   selectedPodcastTypes,
@@ -31,7 +38,7 @@ export default function PodcastFilter({
       <form className="flex flex-col">
         {podcastTypes.map((podcastType) => (
           <div key={podcastType}>
-            <label htmlFor={podcastType}>{podcastType}</label>
+            <label htmlFor={podcastType}>{podcastTypeName[podcastType]}</label>
             <input
               type="checkbox"
               id={podcastType}
