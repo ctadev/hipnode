@@ -13,7 +13,7 @@ const Register = () => {
         />
         <h1 className="font-semibold text-lg mt-3">Enter a password</h1>
         <input
-          type="text"
+          type="password"
           placeholder="Enter password..."
           className="h-[50px] dark:bg-dark-black-2 bg-main-bg rounded-lg px-5 w-full"
         />
