@@ -8,7 +8,7 @@ interface IApiError {
 }
 
 const handleError = (err: AxiosError<IApiError>): never => {
-  throw new Error(err.response?.data.message);
+  throw new Error(err.response?.data.message || 'An error occurred');
 };
 
 export const getAllMeetups = async (): Promise<IMeetup[]> => {

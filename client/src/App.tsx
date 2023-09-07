@@ -64,54 +64,53 @@
 //       {data && <div>{JSON.stringify(data)}</div>}
 //     </div>
 //   );
+
+// import axios, { AxiosError } from 'axios';
+// import React, { useEffect, useState } from 'react';
+
+// interface IData {
+//   id: number;
+//   title: string;
+//   content: string;
+//   image_url: string;
+//   user_id: number;
+//   group_id: number;
+//   view_count: number;
+//   like_count: number;
+//   created_at: Date;
+//   updated_at: Date;
 // }
 
-import axios, { AxiosError } from 'axios';
-import React, { useEffect, useState } from 'react';
+// interface IError {
+//   message: string;
+// }
 
-interface IData {
-  id: number;
-  title: string;
-  content: string;
-  image_url: string;
-  user_id: number;
-  group_id: number;
-  view_count: number;
-  like_count: number;
-  created_at: Date;
-  updated_at: Date;
-}
+// export default function App() {
+//   const [data, setData] = useState<IData[]>([]);
+//   const [error, setError] = useState<string>('');
 
-interface IError {
-  message: string;
-}
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       try {
+//         const res = await axios.get<IData[]>('http://localhost:8000/posts/2');
+//         setData(res.data);
+//         setError('');
+//       } catch (err) {
+//         const errorObj = err as AxiosError<IError>; // casting error to axios error type
+//         const errMessage: string =
+//           errorObj.response?.data?.message || errorObj.message;
+//         setError(errMessage);
+//       }
+//     };
 
-export default function App() {
-  const [data, setData] = useState<IData[]>([]);
-  const [error, setError] = useState<string>('');
+//     fetchData();
+//   }, []);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await axios.get<IData[]>('http://localhost:8000/posts/2');
-        setData(res.data);
-        setError('');
-      } catch (err) {
-        const errorObj = err as AxiosError<IError>; // casting error to axios error type
-        const errMessage: string =
-          errorObj.response?.data?.message || errorObj.message;
-        setError(errMessage);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  return (
-    <>
-      {error && <div>Error: {error}</div>}
-      <hr />
-      {data && <div>{JSON.stringify(Object.keys(data))}</div>}
-    </>
-  );
-}
+//   return (
+//     <>
+//       {error && <div>Error: {error}</div>}
+//       <hr />
+//       {data && <div>{JSON.stringify(Object.keys(data))}</div>}
+//     </>
+//   );
+// }

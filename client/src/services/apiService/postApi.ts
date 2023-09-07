@@ -1,14 +1,14 @@
 import axios, { AxiosError } from 'axios';
 import { IPost } from '../../../types/index';
 
-const API_URL = import.meta.env.VITE_DEV_BACKEND_URL;
+const API_URL = import.meta.env.VITE_DEV_BACKEND_URL as string;
 
 interface IApiError {
   message: string;
 }
 
 const handleError = (err: AxiosError<IApiError>): never => {
-  throw new Error(err.response?.data.message);
+  throw new Error(err.response?.data.message || 'An error occurred');
 };
 
 export const fetchPosts = async (): Promise<IPost[]> => {
