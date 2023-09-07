@@ -7,3 +7,6 @@ export { default as feedback } from './Feedback.svg';
 export { default as inbox } from './Inbox.svg';
 export { default as rocket } from './rocket.svg';
 export { default as lightning } from './Lightning.svg';
+export { default as new } from './new.svg';
+export { default as popular } from './popular.svg';
+export { default as following } from './following.svg';

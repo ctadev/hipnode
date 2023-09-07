@@ -1,5 +1,5 @@
 export { default as HomePage } from './HomePage';
-export { default as GroupPage } from './GroupPage';
+export { default as GroupPage } from './GroupsPage';
 export { default as MeetupPage } from './MeetupsPage';
 export { default as PodcastPage } from './PodcastsPage';
 export { default as SignInPage } from './SigninPage';
