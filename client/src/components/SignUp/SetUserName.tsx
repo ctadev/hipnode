@@ -1,14 +1,27 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { setRegisteredUser } from '../../app/userSlice';
 
 const SetUserName = () => {
+  const { registeredUser } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    dispatch(setRegisteredUser({ name, value }));
+  };
+
   return (
     <main className="lg:h-screen lg:w-1/2 bg-white dark:bg-dark-main-bg flex flex-col items-center justify-center dark:text-white py-[50px]">
       <section className="flex flex-col gap-2 items-start max-w-[450px] w-full">
         <h1 className="font-semibold text-lg">Choose a username</h1>
         <input
           type="text"
+          name="username"
           placeholder="e.g Hipnode2023"
+          value={registeredUser.username}
+          onChange={handleChange}
           className="h-[50px] dark:bg-dark-black-2 bg-main-bg rounded-lg px-5 w-full"
         />
         <Link to="/sign-up/register-email">

@@ -41,6 +41,7 @@ export const getUserInfo = async (id: number): Promise<IUser> => {
 };
 
 export const loginUser = async (user: ILoginUser): Promise<ILoginResponse> => {
+  console.log('user obj', user);
   try {
     const res = await axios.post<ILoginResponse>(
       `${API_URL}/users/login`,
