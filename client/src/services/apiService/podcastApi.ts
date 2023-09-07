@@ -3,24 +3,20 @@ import { IPodcast } from '../../../types/index';
 
 const API_URL: string = import.meta.env.VITE_DEV_BACKEND_URL as string;
 
-interface ErrorResponse {
+interface IApiError {
   message: string;
 }
 
-const handleError = (err: AxiosError<ErrorResponse>): void => {
-  if (err && err.response) {
-    throw new Error(err.response.data.message);
-  }
-  throw new Error('An error occured');
+const handleError = (err: AxiosError<IApiError>): never => {
+  throw new Error(err.response?.data.message || 'An error occurred');
 };
 
-export const getAllPodcasts = async (): Promise<IPodcast[] | undefined> => {
+export const getAllPodcasts = async (): Promise<IPodcast[]> => {
   try {
-    const res: AxiosResponse<IPodcast[]> = await axios.get(
-      `${API_URL}/podcasts`,
-    );
-    return res.data as IPodcast[];
+    const res = await axios.get<IPodcast[]>(`${API_URL}/podcasts`);
+    return res.data;
   } catch (err) {
-    handleError(err as AxiosError<ErrorResponse>);
+    handleError(err as AxiosError<IApiError>);
+    return [];
   }
 };

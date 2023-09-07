@@ -1,9 +1,22 @@
-import axios, { AxiosResponse } from 'axios';
+import axios, { AxiosError, AxiosResponse } from 'axios';
 import { IMeetup } from '../../../types/index';
 
-const API_URL: string = import.meta.env.VITE_DEV_BACKEND_URL as string;
+const API_URL = import.meta.env.VITE_DEV_BACKEND_URL as string;
 
-export const getAllMeetups = async (): Promise<IMeetup[] | undefined> => {
-  const res: AxiosResponse<IMeetup[]> = await axios.get(`${API_URL}/meetups`);
-  return res.data as IMeetup[];
+interface IApiError {
+  message: string;
+}
+
+const handleError = (err: AxiosError<IApiError>): never => {
+  throw new Error(err.response?.data.message || 'An error occurred');
+};
+
+export const getAllMeetups = async (): Promise<IMeetup[]> => {
+  try {
+    const res = await axios.get<IMeetup[]>(`${API_URL}/meetups`);
+    return res.data;
+  } catch (err) {
+    handleError(err as AxiosError<IApiError>);
+    return [];
+  }
 };

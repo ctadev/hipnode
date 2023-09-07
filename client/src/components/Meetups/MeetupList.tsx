@@ -1,12 +1,16 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useCallback } from 'react';
 import Loading from '../Loading/Loading';
 import Error from '../Error/Error';
 import { IMeetup } from '../../../types/index';
 import { getAllMeetups } from '../../services/apiService/meetupApi';
 import MeetupCard from './MeetupCard';
 
-export default function MeetupList() {
+type MeetupListProps = {
+  meetupCategoryTypes: string[];
+};
+
+export default function MeetupList({ meetupCategoryTypes }: MeetupListProps) {
   const {
     data: meetups,
     error,
@@ -21,13 +25,21 @@ export default function MeetupList() {
     return <Loading />;
   }
 
-  if (error && isError) {
+  if (isError) {
     return <Error error={error} />;
   }
 
+  const filteredMeetups: IMeetup[] = !meetupCategoryTypes
+    ? meetups
+    : meetups?.filter((meetup) =>
+        meetupCategoryTypes.every(
+          (meetupCategoryType) => meetup[meetupCategoryType],
+        ),
+      );
+
   return (
     <section>
-      {meetups.map((meetup: IMeetup) => (
+      {filteredMeetups?.map((meetup: IMeetup) => (
         <MeetupCard key={meetup.id} meetup={meetup} />
       ))}
     </section>
