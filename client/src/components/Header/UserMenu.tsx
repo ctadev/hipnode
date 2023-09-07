@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import HeaderIcon from '../Icons/HeaderIcon';
 import { Messages, Notifications, ProfileMenu } from '.';
 
@@ -6,6 +6,34 @@ const UserMenu = () => {
   const [messageModal, setMessageModal] = useState(false);
   const [notificationModal, setNotificationModal] = useState(false);
   const [profileModal, setProfileModal] = useState(false);
+  const [toggleSearchBar, setToggleSearchBar] = useState(false);
+  const [searchInput, setSearchInput] = useState('');
+  const [isWideScreen, setIsWideScreen] = useState(window.innerWidth);
+  const [hideUserMenu, setHideUserMenu] = useState(false);
+
+  useEffect(() => {
+    function handleResize() {
+      setIsWideScreen(window.innerWidth);
+      if (isWideScreen > 1023) {
+        setToggleSearchBar(true);
+        setHideUserMenu(false);
+        setSearchInput('');
+      } else {
+        setToggleSearchBar(false);
+        setHideUserMenu(false);
+        setSearchInput('');
+      }
+    }
+
+    // Add event listener
+    window.addEventListener('resize', handleResize);
+
+    // Call handler right away so state gets updated with initial window size
+    handleResize();
+
+    // Remove event listener on cleanup
+    return () => window.removeEventListener('resize', handleResize);
+  }, [isWideScreen]);
 
   const toggleMessageModal = () => {
     setMessageModal(!messageModal);
@@ -28,23 +56,47 @@ const UserMenu = () => {
   return (
     <main className="flex items-center flex-1 w-full">
       {/* Search Bar */}
-      <section className="relative flex-1 mx-10">
+      <section className="relative flex-1 mx-4 md:mx-6">
         <input
           type="text"
-          className="w-full outline-none h-[40px] rounded-lg px-4 bg-main-bg dark:bg-dark-secondary-bg"
+          className={`outline-none h-[40px] rounded-lg bg-main-bg dark:bg-dark-secondary-bg transition-all ${
+            toggleSearchBar ? 'w-full px-4' : 'w-0 px-0'
+          }`}
           placeholder="Type here to search..."
+          value={searchInput}
+          onChange={(e) => setSearchInput(e.target.value)}
         />
-        <div className="absolute top-1/2 -translate-y-1/2 right-5 cursor-pointer z-20">
+        <div
+          className="absolute top-1/2 -translate-y-1/2 right-5 cursor-pointer z-20 lg:hidden"
+          onClick={() => {
+            setToggleSearchBar(!toggleSearchBar);
+            setHideUserMenu(!hideUserMenu);
+          }}
+        >
           <HeaderIcon
             iconName="search"
             color="#C5D0E6"
             className="search_icon"
           />
         </div>
+        <div className="absolute top-1/2 -translate-y-1/2 right-5 cursor-pointer z-20 hidden lg:block">
+          <HeaderIcon
+            iconName="search"
+            color="#C5D0E6"
+            className="search_icon"
+          />
+        </div>
+
+        {/* Search Modal Results */}
+        {searchInput && (
+          <aside className="absolute w-full h-[300px] bg-white dark:bg-dark-main-bg dark:text-white left-0 rounded-lg top-[50px]">
+            Searching....
+          </aside>
+        )}
       </section>
 
       {/* User Menu */}
-      <section className="relative">
+      <section className={`relative ${hideUserMenu ? 'hidden' : 'block'}`}>
         <ul className="flex items-center gap-2 md:gap-6">
           <li
             className="cursor-pointer bg-main-bg dark:bg-dark-secondary-bg p-2 rounded-lg dark:hover:bg-primary-orange hover:bg-primary-orange header_li"

@@ -12,7 +12,7 @@ import { useSelector } from 'react-redux';
 const MainMenu = () => {
   const { theme } = useSelector((state) => state.themeState);
   return (
-    <main className="flex items-center md:gap-[20px] lg:gap-[80px]">
+    <main className="flex items-center md:gap-[20px] lg:gap-[40px] xl:gap-[50px]">
       <Link to="/">
         <section className="flex items-center gap-2 cursor-pointer">
           <img src={theme ? white_logo : dark_logo} alt="" />
