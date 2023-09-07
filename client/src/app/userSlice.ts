@@ -3,7 +3,7 @@ import { ICurrentUser } from '../../types/index';
 import { getUserFromLocalStorage } from '../services/authService/userAuth';
 
 export interface IUserState {
-  currentUser: null | ICurrentUser;
+  currentUser: ICurrentUser | null;
 }
 
 const initialState: IUserState = {
