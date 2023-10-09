@@ -17,7 +17,7 @@ export default function PostList() {
   }
 
   return (
-    <section>
+    <section className='flex flex-col gap-6 mt-6'>
       {data?.posts &&
         data?.posts?.map((post) => <PostCard key={post.id} post={post} />)}
     </section>

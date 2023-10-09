@@ -19,7 +19,7 @@ const ProfileMenu = () => {
   };
 
   return (
-    <main className="absolute w-[182px] bg-white dark:bg-dark-main-bg dark:text-white left-0 rounded-lg top-[70px] pt-4">
+    <main className="absolute w-[182px] bg-white dark:bg-dark-main-bg dark:text-white left-0 rounded-lg top-[70px] pt-4 shadow-lg dark:shadow-[0_0_15px_-3px_rgba(255,255,255,0.8)]">
       {/* Profile Button */}
       <section className="flex gap-3 items-center mx-4 px-4 py-1 cursor-pointer hover:bg-primary-orange rounded-full">
         <HeaderIcon iconName="profile" color={theme ? 'white' : 'black'} />

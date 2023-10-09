@@ -31,22 +31,30 @@ export default function PodcastFilter({
   };
 
   return (
-    <div>
-      <h3>Filter By Show</h3>
-      <form className="flex flex-col">
+    <main>
+      <h3 className="font-semibold text-[18px] dark:text-white">
+        Filter By Show
+      </h3>
+      <form className="flex flex-col gap-3 mt-4">
         {podcastTypes.map((podcastType) => (
-          <div key={podcastType}>
-            <label htmlFor={podcastType}>{podcastTypeName[podcastType]}</label>
+          <div key={podcastType} className="flex items-center justify-between">
+            <label
+              htmlFor={podcastType}
+              className="font-semibold text-[12px] text-dark-grey-1 dark:text-white cursor-pointer"
+            >
+              {podcastTypeName[podcastType]}
+            </label>
             <input
               type="checkbox"
               id={podcastType}
               value={podcastType}
               checked={selectedPodcastTypes.includes(podcastType)}
               onChange={handleChange}
+              className="cursor-pointer"
             />
           </div>
         ))}
       </form>
-    </div>
+    </main>
   );
 }

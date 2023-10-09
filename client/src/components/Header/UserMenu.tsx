@@ -89,7 +89,7 @@ const UserMenu = () => {
 
         {/* Search Modal Results */}
         {searchInput && (
-          <aside className="absolute w-full h-[300px] bg-white dark:bg-dark-main-bg dark:text-white left-0 rounded-lg top-[50px]">
+          <aside className="absolute w-full h-[300px] bg-white dark:bg-dark-main-bg dark:text-white left-0 rounded-lg top-[50px] shadow-lg dark:shadow-[0_0_15px_-3px_rgba(255,255,255,0.8)]">
             Searching....
           </aside>
         )}

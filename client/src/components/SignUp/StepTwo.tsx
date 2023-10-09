@@ -12,17 +12,16 @@ const StepTwo = () => {
   return (
     <main className="lg:h-screen lg:w-1/2 bg-white dark:bg-dark-main-bg flex flex-col items-center justify-center dark:text-white py-[50px]">
       <section className="flex flex-col gap-2 items-start max-w-[450px] w-full">
-        <h1 className="text-3xl font-bold">
-          Do you know how to code?
-        </h1>
+        <h1 className="text-3xl font-bold">Do you know how to code?</h1>
 
         <ul className={`flex flex-col gap-5 w-full mt-8`}>
           {steptwo.map((item) => (
             <li
               key={item.id}
-              className={`bg-main-bg py-5 w-full font-semibold text-lg rounded-lg px-4 dark:bg-dark-secondary-bg cursor-pointer hover:bg-alt-2 dark:hover:bg-alt-2 ${
-                selectedTags === item.title &&
-                'bg-alt-2 dark:bg-alt-2'
+              className={`py-5 w-full font-semibold text-lg rounded-lg px-4 cursor-pointer hover:bg-alt-2 dark:hover:bg-alt-2 ${
+                selectedTags === item.title
+                  ? 'bg-alt-2 dark:bg-alt-2'
+                  : 'dark:bg-dark-secondary-bg bg-main-bg'
               }`}
               onClick={() => selectedTag(item.title)}
             >
