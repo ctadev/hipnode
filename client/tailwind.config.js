@@ -18,7 +18,7 @@ export default {
         'grey-3': '#858EAD',
         white: '#ffffff',
         'dark-blue': '#192251',
-        'dark-grey-1': '#3f4353',
+        'dark-grey-1': '#3f4354',
         'dark-grey-2': '#97989d',
         'dark-grey-3': '#848dad',
         'dark-grey-4': '#c5d0e6',

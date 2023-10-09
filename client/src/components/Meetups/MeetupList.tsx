@@ -38,7 +38,7 @@ export default function MeetupList({ meetupCategoryTypes }: MeetupListProps) {
       );
 
   return (
-    <section>
+    <section className='flex flex-col gap-6'>
       {filteredMeetups?.map((meetup: IMeetup) => (
         <MeetupCard key={meetup.id} meetup={meetup} />
       ))}

@@ -40,7 +40,7 @@ export default function PodcastList({
       );
 
   return (
-    <section>
+    <section className='columns-1 sm:columns-2 2xl:columns-3'>
       {filteredPodcasts.map((podcast) => (
         <PodcastCard key={podcast.id} podcast={podcast} />
       ))}

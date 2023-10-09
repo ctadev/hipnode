@@ -68,8 +68,10 @@ const StepThree = () => {
           {stepthree.map((item) => (
             <li
               key={item.id}
-              className={`bg-main-bg py-5 font-semibold text-lg w-fit rounded-lg px-4 dark:bg-dark-secondary-bg cursor-pointer hover:bg-alt-2 dark:hover:bg-alt-2 ${
-                selectedTags.includes(item.title) && 'bg-alt-2 dark:bg-alt-2'
+              className={`py-5 font-semibold text-lg w-fit rounded-lg px-4 cursor-pointer hover:bg-alt-2 dark:hover:bg-alt-2 ${
+                selectedTags.includes(item.title)
+                  ? 'bg-alt-2 dark:bg-alt-2'
+                  : 'dark:bg-dark-secondary-bg bg-main-bg'
               }`}
               onClick={() => toggleTag(item.title)}
             >

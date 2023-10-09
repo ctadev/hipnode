@@ -37,22 +37,28 @@ export default function MeetupFilter({
   };
 
   return (
-    <section>
-      <h3>Categories</h3>
-      <form>
+    <main className="">
+      <h3 className="font-semibold text-[18px] dark:text-white">Categories</h3>
+      <form className="flex flex-col gap-3 mt-4">
         {meetupTypes.map((meetupType) => (
-          <div key={meetupType}>
-            <label htmlFor={meetupType}>{podcastTypeName[meetupType]}</label>
+          <div key={meetupType} className="flex items-center justify-between">
+            <label
+              htmlFor={meetupType}
+              className="font-semibold text-[12px] text-dark-grey-1 dark:text-white cursor-pointer"
+            >
+              {podcastTypeName[meetupType]}
+            </label>
             <input
               type="checkbox"
               id={meetupType}
               value={meetupType}
               checked={meetupCategoryTypes.includes(meetupType)}
               onChange={handleChange}
+              className="cursor-pointer"
             />
           </div>
         ))}
       </form>
-    </section>
+    </main>
   );
 }

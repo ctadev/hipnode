@@ -3,11 +3,7 @@ import { stepone } from '../../constants/category';
 import { Link } from 'react-router-dom';
 
 const StepOne = () => {
-  const [selectedTags, setSelectedTags] = useState(stepone[3].title);
-
-  const selectedTag = (item) => {
-    setSelectedTags(item);
-  };
+  const [selectedTags, setSelectedTags] = useState(stepone[3].id);
 
   return (
     <main className="lg:h-screen lg:w-1/2 bg-white dark:bg-dark-main-bg flex flex-col items-center justify-center dark:text-white py-[50px]">
@@ -20,11 +16,12 @@ const StepOne = () => {
           {stepone.map((item) => (
             <li
               key={item.id}
-              className={`bg-main-bg py-5 w-full font-semibold text-lg rounded-lg px-4 dark:bg-dark-secondary-bg cursor-pointer hover:bg-alt-2 dark:hover:bg-alt-2 ${
-                selectedTags === item.title &&
-                'bg-alt-2 dark:bg-alt-2'
+              className={`py-5 w-full font-semibold text-lg rounded-lg px-4  cursor-pointer hover:bg-alt-2 dark:hover:bg-alt-2 ${
+                selectedTags === item.id
+                  ? 'bg-alt-2 dark:bg-alt-2'
+                  : 'dark:bg-dark-secondary-bg bg-main-bg'
               }`}
-              onClick={() => selectedTag(item.title)}
+              onClick={() => setSelectedTags(item.id)}
             >
               {item.title}
             </li>

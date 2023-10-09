@@ -26,7 +26,7 @@ export default function GroupList() {
   }
 
   return (
-    <section>
+    <section className="columns-1 sm:columns-2 xl:columns-3 gap-4 w-full">
       {groups?.map((group: IGroup) => (
         <GroupCard key={group.id} group={group} />
       ))}
