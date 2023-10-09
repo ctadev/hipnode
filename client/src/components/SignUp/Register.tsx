@@ -1,20 +1,36 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { setRegisteredUser } from '../../app/userSlice';
 
 const Register = () => {
+  const { registeredUser } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    dispatch(setRegisteredUser({ name, value }));
+  };
+
   return (
     <main className="lg:h-screen lg:w-1/2 bg-white dark:bg-dark-main-bg flex flex-col items-center justify-center dark:text-white py-[50px]">
       <section className="flex flex-col gap-2 items-start max-w-[450px] w-full">
         <h1 className="font-semibold text-lg">Enter your email</h1>
         <input
-          type="text"
+          type="email"
+          name="email"
           placeholder="Enter your email..."
+          value={registeredUser.email}
+          onChange={handleChange}
           className="h-[50px] dark:bg-dark-black-2 bg-main-bg rounded-lg px-5 w-full"
         />
         <h1 className="font-semibold text-lg mt-3">Enter a password</h1>
         <input
-          type="text"
+          type="password"
+          name="password"
           placeholder="Enter password..."
+          value={registeredUser.password}
+          onChange={handleChange}
           className="h-[50px] dark:bg-dark-black-2 bg-main-bg rounded-lg px-5 w-full"
         />
         <Link to="/sign-up/next-step-one">

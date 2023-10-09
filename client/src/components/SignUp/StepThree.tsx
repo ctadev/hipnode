@@ -1,6 +1,16 @@
 import React, { useState } from 'react';
 import { stepthree } from '../../constants/category';
-import { Link } from 'react-router-dom';
+import { useMutation } from '@tanstack/react-query';
+import { registerUser } from '../../services/apiService/userApi';
+import { setRegisteredUser } from '../../app/userSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
+
+type User = {
+  username: string;
+  email: string;
+  password: string;
+};
 
 const StepThree = () => {
   const [selectedTags, setSelectedTags] = useState([
@@ -9,12 +19,38 @@ const StepThree = () => {
     stepthree[6].title,
   ]);
 
+  const [errMsg, setErrMsg] = useState<string>('');
+
+  const { registeredUser } = useSelector((state) => state.user);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const toggleTag = (tag) => {
     if (selectedTags.includes(tag)) {
       setSelectedTags((prevTags) => prevTags.filter((t) => t !== tag));
     } else {
       setSelectedTags((prevTags) => [...prevTags, tag]);
     }
+  };
+
+  const clearRegisteredUser = () => {
+    dispatch(setRegisteredUser({ name: 'username', value: '' }));
+    dispatch(setRegisteredUser({ name: 'email', value: '' }));
+    dispatch(setRegisteredUser({ name: 'password', value: '' }));
+  };
+
+  const mutation = useMutation({
+    mutationFn: async (user: User) => await registerUser(user),
+    onSuccess: (data) => {
+      clearRegisteredUser();
+      navigate('/sign-in');
+    },
+    onError: (err: any) => setErrMsg(err?.message),
+  });
+
+  const handleClick = () => {
+    mutation.mutate(registeredUser);
   };
 
   return (
@@ -44,11 +80,14 @@ const StepThree = () => {
           ))}
         </ul>
 
-        <Link to="/">
-          <button className="bg-alt-2 text-white h-[50px] rounded-lg px-9 mt-5 font-bold hover:bg-primary-orange">
-            Get Started
-          </button>
-        </Link>
+        {errMsg && errMsg}
+
+        <button
+          onClick={handleClick}
+          className="bg-alt-2 text-white h-[50px] rounded-lg px-9 mt-5 font-bold hover:bg-primary-orange"
+        >
+          Get Started
+        </button>
       </section>
     </main>
   );

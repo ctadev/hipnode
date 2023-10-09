@@ -15,31 +15,41 @@ const ProfileMenu = () => {
   const handleLogout = () => {
     dispatch(logoutUser());
     removeUserFromLocalStorage();
-    navigate('/');
+    navigate('/sign-in');
+  };
+
+  const handleLogin = () => {
+    navigate('/sign-in');
   };
 
   return (
     <main className="absolute w-[182px] bg-white dark:bg-dark-main-bg dark:text-white left-0 rounded-lg top-[70px] pt-4 shadow-lg dark:shadow-[0_0_15px_-3px_rgba(255,255,255,0.8)]">
       {/* Profile Button */}
       <section className="flex gap-3 items-center mx-4 px-4 py-1 cursor-pointer hover:bg-primary-orange rounded-full">
-        <HeaderIcon iconName="profile" color={theme ? 'white' : 'black'} />
-        <h1
-          className="font-semibold text-lg"
-          onClick={() => navigate(`/${currentUser.id}/profile`)}
-        >
-          Profile
-        </h1>
+        {currentUser && (
+          <>
+            <HeaderIcon iconName="profile" color={theme ? 'white' : 'black'} />
+            <h1
+              className="font-semibold text-lg"
+              onClick={() => navigate(`/${currentUser.id}/profile`)}
+            >
+              Profile
+            </h1>
+          </>
+        )}
       </section>
 
       {/* Logout Button */}
       <section className="flex gap-3 items-center mt-3 mx-4 px-4 py-1 hover:bg-primary-orange rounded-full cursor-pointer">
         <HeaderIcon iconName="logout" color={theme ? 'white' : 'black'} />
         {currentUser ? (
-          <h1 className="font-semibold text-lg">Logout</h1>
+          <h1 className="font-semibold text-lg" onClick={handleLogout}>
+            Logout
+          </h1>
         ) : (
-          <Link to="/sign-in">
-            <h1 className="font-semibold text-lg">Login</h1>
-          </Link>
+          <h1 className="font-semibold text-lg" onClick={handleLogin}>
+            Login
+          </h1>
         )}
       </section>
 
